@@ -24,20 +24,19 @@ class Character extends MovableObject {
     currentImage = 0;
 
     constructor() {
-        super().loadImage("img/1.Sharkie/1.IDLE/1.png");
-        this.loadImages(this.characterImages);
+        super().loadImage("img/1.Sharkie/1.IDLE/1.png"); // erstes Bild laden
+        this.loadImages(this.characterImages); // gesamtes array laden
 
         this.animate();
     }
 
     animate() {
 
-        setInterval( () => {
-            let i = this.currentImage % this.characterImages.length;
-            let path = this.characterImages[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
-
+        setInterval( () => { 
+            let i = this.currentImage % this.characterImages.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
+            let path = this.characterImages[i]; // pfad in den das bild geladen wird
+            this.img = this.imageCache[path]; // Bild das im pfad ist in cache paken
+            this.currentImage++; // zählt im array immer ein hoch
         }, 210);
     }
 }
