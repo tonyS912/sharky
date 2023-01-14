@@ -1,6 +1,7 @@
 class Character extends MovableObject {
     height = 225;
     width = 225;
+    speed = 6;
     characterImages = [
         "img/1.Sharkie/1.IDLE/1.png",
         "img/1.Sharkie/1.IDLE/2.png",
@@ -22,6 +23,7 @@ class Character extends MovableObject {
         "img/1.Sharkie/1.IDLE/18.png",
     ];
     currentImage = 0;
+    world;
 
     constructor() {
         super().loadImage("img/1.Sharkie/1.IDLE/1.png"); // erstes Bild laden
@@ -31,12 +33,27 @@ class Character extends MovableObject {
     }
 
     animate() {
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT) {
+                this.x += this.speed;
+                this.mirror = false;
+            } 
 
-        setInterval( () => { 
-            let i = this.currentImage % this.characterImages.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
-            let path = this.characterImages[i]; // pfad in den das bild geladen wird
-            this.img = this.imageCache[path]; // Bild das im pfad ist in cache paken
-            this.currentImage++; // zählt im array immer ein hoch
+            if (this.world.keyboard.LEFT) {
+                this.x -= this.speed;
+                this.mirror = true;
+            }
+        }, 1000/ 60);
+
+        setInterval(() => {
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // || = logisches oder
+                
+                // Moving animation
+                let i = this.currentImage % this.characterImages.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
+                let path = this.characterImages[i]; // pfad in den das bild geladen wird
+                this.img = this.imageCache[path]; // Bild das im pfad ist in cache paken
+                this.currentImage++; // zählt im array immer ein hoch
+            }
         }, 210);
     }
 }

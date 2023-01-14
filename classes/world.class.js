@@ -15,16 +15,23 @@ class World {
         new BackgroundObject('img/3. Background/Layers/1. Light/1.png', 0),
     ];
     canvas;
-    ctx;
+    ctx;                   // Contex
+    keyboard;
 
-    constructor(canvas) {
+    constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard;
         this.draw();
+        this.setWorld();
+    }
+
+    setWorld() {
+        this.character.world = this;
     }
 
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Canvas wird gecleared da man sonst drüber bügelt.
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Canvas was cleariyfing, usefull that we don't push a canvas over the existing.
 
         this.addObjectToMap(this.backgroundObjects)
         this.addToMap(this.character);
@@ -32,7 +39,7 @@ class World {
         
 
         let self = this;
-        requestAnimationFrame(function() { //wird so häufig aufgerufen wie es die graka schafft.
+        requestAnimationFrame(function() { // called so often as graphic card can handle 
             self.draw();
         }); 
     }
@@ -43,7 +50,28 @@ class World {
         });
     }
 
-    addToMap(mo) {
+    /**
+     * 
+     * @param {json} mo - movable object 
+     */
+    addToMap(mo) { 
+        /**
+         * if mirrors images
+         */
+        if (mo.mirror) {
+            this.ctx.save();
+            this.ctx.translate(mo.width, 0);
+            this.ctx.scale(-1, 1);                  // turn and repositioning
+            mo.x = mo.x * -1                        // needed if x-achis is switching
+        }
+
+        /**
+         * 
+         */
         this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        if (mo.mirror) {
+            mo.x = mo.x * -1                        // neeeded if x-achis is switching
+            this.ctx.restore();
+        }
     }
 }
