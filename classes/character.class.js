@@ -43,11 +43,19 @@ class Character extends MovableObject {
                 this.x -= this.speed;
                 this.mirror = true;
             }
+
+            if (this.world.keyboard.UP) {
+                this.y -= this.speed;
+            }
+
+            if (this.world.keyboard.DOWN) {
+                this.y += this.speed;
+            }
             this.world.camera_x = -this.x
         }, 1000/ 60);
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) { // || = logisches oder
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) { // || = logisches oder
                 
                 // Moving animation
                 let i = this.currentImage % this.characterImages.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
