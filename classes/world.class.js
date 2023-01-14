@@ -1,8 +1,7 @@
 class World {
 
     character = new Character();
-    enemies = level1.enemies;
-    backgroundObjects = level1.backgroundObjects;
+    level = level1;
     canvas;
     ctx;                   // Contex
     keyboard;
@@ -28,9 +27,9 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);               // background moving-left //translate need 2 arguments (x, y)
 
-        this.addObjectToMap(this.backgroundObjects)     // drawing the background
+        this.addObjectToMap(this.level.backgroundObjects)     // drawing the background
         this.addToMap(this.character);                  // drawing the character
-        this.addObjectToMap(this.enemies);              // drawing th eenemies 
+        this.addObjectToMap(this.level.enemies);              // drawing th eenemies 
         
         this.ctx.translate(-this.camera_x, 0);              //background moving-right //translate need 2 arguments (x, y)
 
