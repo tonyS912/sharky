@@ -17,6 +17,7 @@ class World {
     canvas;
     ctx;                   // Contex
     keyboard;
+    camera_x = 0;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -30,13 +31,19 @@ class World {
         this.character.world = this;
     }
 
+    /**
+     * drawing the the context like 
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Canvas was cleariyfing, usefull that we don't push a canvas over the existing.
 
-        this.addObjectToMap(this.backgroundObjects)
-        this.addToMap(this.character);
-        this.addObjectToMap(this.enemies);
+        this.ctx.translate(this.camera_x, 0);               // background moving-left //translate need 2 arguments (x, y)
+
+        this.addObjectToMap(this.backgroundObjects)     // drawing the background
+        this.addToMap(this.character);                  // drawing the character
+        this.addObjectToMap(this.enemies);              // drawing th eenemies 
         
+        this.ctx.translate(-this.camera_x, 0);              //background moving-right //translate need 2 arguments (x, y)
 
         let self = this;
         requestAnimationFrame(function() { // called so often as graphic card can handle 
