@@ -2,7 +2,7 @@ class Character extends MovableObject {
     height = 225;
     width = 225;
     speed = 6;
-    characterImages = [
+    sharky = [
         "./img/1.Sharkie/1.IDLE/1.png",
         "./img/1.Sharkie/1.IDLE/2.png",
         "./img/1.Sharkie/1.IDLE/3.png",
@@ -28,7 +28,7 @@ class Character extends MovableObject {
 
     constructor() {
         super().loadImage("img/1.Sharkie/1.IDLE/1.png"); // erstes Bild laden
-        this.loadImages(this.characterImages); // gesamtes array laden
+        this.loadImages(this.sharky); // gesamtes array laden
 
         this.animate();
     }
@@ -62,10 +62,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) { // || = logisches oder
                 
                 // Moving animation
-                let i = this.currentImage % this.characterImages.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
-                let path = this.characterImages[i]; // pfad in den das bild geladen wird
-                this.img = this.imageCache[path]; // Bild das im pfad ist in cache paken
-                this.currentImage++; // zählt im array immer ein hoch
+                this.playAnimation(this.sharky)   
             }
         }, 210);
     }
