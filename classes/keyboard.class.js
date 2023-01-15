@@ -3,5 +3,5 @@ class Keyboard {
     RIGHT;
     UP;
     DOWN;
-    SPACE;
+    //SPACE;
 };

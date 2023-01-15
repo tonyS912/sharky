@@ -2,7 +2,7 @@ class Character extends MovableObject {
     height = 225;
     width = 225;
     speed = 6;
-    sharky = [
+    moving = [
         "./img/1.Sharkie/1.IDLE/1.png",
         "./img/1.Sharkie/1.IDLE/2.png",
         "./img/1.Sharkie/1.IDLE/3.png",
@@ -24,11 +24,11 @@ class Character extends MovableObject {
     ];
     currentImage = 0;
     world;
-    under_water = new Audio('./audio/under_water.mp3');
+    under_water = new Audio("./audio/under_water.mp3");
 
     constructor() {
         super().loadImage("img/1.Sharkie/1.IDLE/1.png"); // erstes Bild laden
-        this.loadImages(this.sharky); // gesamtes array laden
+        this.loadImages(this.moving); // gesamtes array laden
 
         this.animate();
     }
@@ -36,15 +36,17 @@ class Character extends MovableObject {
     animate() {
         this.under_water.play();
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (
+                this.world.keyboard.RIGHT &&
+                this.x < this.world.level.level_end_x
+            ) {
                 this.x += this.speed;
                 this.mirror = false;
-            } 
+            }
 
             if (this.world.keyboard.LEFT && this.x > -400) {
                 this.x -= this.speed;
                 this.mirror = true;
-                
             }
 
             if (this.world.keyboard.UP && this.y > -100) {
@@ -54,15 +56,15 @@ class Character extends MovableObject {
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.y += this.speed;
             }
-            
+
             this.world.camera_x = -this.x + 40; // Character starts not on the left border, it starts a littlebit more right in the area
-        }, 1000/ 60);
+        }, 1000 / 60);
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) { // || = logisches oder
-                
+            this.playAnimation(this.moving);
+            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                 // Moving animation
-                this.playAnimation(this.sharky)   
+                this.playAnimation(this.moving);
             }
         }, 210);
     }

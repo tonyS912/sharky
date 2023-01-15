@@ -29,7 +29,7 @@ class World {
 
         this.addObjectToMap(this.level.backgroundObjects)     // drawing the background
         this.addToMap(this.character);                  // drawing the character
-        this.addObjectToMap(this.level.enemies);              // drawing th eenemies 
+        this.addObjectToMap(this.level.enemies);              // drawing the enemies 
         
         this.ctx.translate(-this.camera_x, 0);              //background moving-right //translate need 2 arguments (x, y)
 
