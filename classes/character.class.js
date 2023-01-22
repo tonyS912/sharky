@@ -1,6 +1,8 @@
 class Character extends MovableObject {
     height = 225;
     width = 225;
+    frameX = 120;
+    frameY = 90;
     speed = 6;
     moving = [
         "./img/1.Sharkie/1.IDLE/1.png",
@@ -22,13 +24,35 @@ class Character extends MovableObject {
         "./img/1.Sharkie/1.IDLE/17.png",
         "./img/1.Sharkie/1.IDLE/18.png",
     ];
+    dying = [
+        "img/1.Sharkie/6.dead/1.Poisoned/1.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/2.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/3.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/4.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/5.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/6.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/7.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/8.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/9.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/10.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/11.png",
+        "img/1.Sharkie/6.dead/1.Poisoned/12.png"
+    ];
+    hurt = [
+        "img/1.Sharkie/5.Hurt/1.Poisoned/1.png",
+        "img/1.Sharkie/5.Hurt/1.Poisoned/2.png",
+        "img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
+        "img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
+    ];
     currentImage = 0;
     world;
     under_water = new Audio("./audio/under_water.mp3");
 
     constructor() {
         super().loadImage("img/1.Sharkie/1.IDLE/1.png"); // erstes Bild laden
-        this.loadImages(this.moving); // gesamtes array laden
+        this.loadImages(this.moving); // gesamtes array laden für die Bewegungsanimation des Charakters
+        this.loadImages(this.dying); // gesamtes array laden für die Sterbeanimation des Charakters
+        this.loadImages(this.hurt); // gesamtes array laden für die Verletzungsanimation des Charakters
 
         this.animate();
     }
@@ -61,10 +85,17 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
+            // Idle animation
             this.playAnimation(this.moving);
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
-                // Moving animation
-                this.playAnimation(this.moving);
+            if (this.isDead()) {
+                this.playAnimation(this.dying);
+            } else if (this.isHurt()) {
+                this.playAnimation(this.hurt); 
+            } else {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                    // Moving animation
+                    this.playAnimation(this.moving);
+                }
             }
         }, 210);
     }

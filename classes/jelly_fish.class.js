@@ -1,6 +1,8 @@
 class JellyFish extends MovableObject {
     height = 100;
     width = 100;
+    frameX = this.width;
+    frameY = this.height;
     moving = [
         "img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png",
         "img/2.Enemy/2 Jelly fish/Regular damage/Yellow 2.png",

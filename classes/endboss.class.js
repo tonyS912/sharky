@@ -1,6 +1,8 @@
 class Endboss extends MovableObject {
     height = 600;
-    width = 600;
+    width = 600;   
+    frameX = this.width;
+    frameY = this.height;
     speed = 4;
     moving = [
         "./img/2.Enemy/3 Final Enemy/2.floating/1.png",

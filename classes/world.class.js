@@ -13,10 +13,22 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollision();
     }
 
     setWorld() {
         this.character.world = this;
+    }
+
+    checkCollision() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    console.log(this.character.energy);
+                }
+            });
+        }, 200);
     }
 
     /**
@@ -54,19 +66,30 @@ class World {
          * if mirrors images
          */
         if (mo.mirror) {
-            this.ctx.save();
-            this.ctx.translate(mo.width, 0);
-            this.ctx.scale(-1, 1);                  // turn and repositioning
-            mo.x = mo.x * -1                        // needed if x-achis is switching
+            this.flipImage(mo);
         }
 
         /**
-         * 
+         * bild zeichnen und collision box zeichnen
          */
-        this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+        mo.draw(this.ctx);
+        mo.drawFrame(this.ctx);
+        
+        
         if (mo.mirror) {
-            mo.x = mo.x * -1                        // neeeded if x-achis is switching
-            this.ctx.restore();
+            this.flipImageBack(mo);
         }
+    }
+
+    flipImage(mo) {
+        this.ctx.save();
+        this.ctx.translate(mo.width, 0);
+        this.ctx.scale(-1, 1);                  // turn and repositioning
+        mo.x = mo.x * -1                        // needed if x-achis is switching
+    }
+
+    flipImageBack(mo) {
+        mo.x = mo.x * -1                        // needed if x-achis is switching
+        this.ctx.restore();
     }
 }
