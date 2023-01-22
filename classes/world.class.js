@@ -1,6 +1,9 @@
 class World {
 
     character = new Character();
+    healthbar = new Healthbar();
+    coinbar = new Coinbar();
+    poisenbar = new Poisenbar();
     level = level1;
     canvas;
     ctx;                   // Contex
@@ -25,7 +28,9 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
-                    console.log(this.character.energy);
+                    this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
+                    this.coinbar.setPercentage(this.character.coins); // set the coinbar to the coins of the character
+                    this.poisenbar.setPercentage(this.character.poisen); // set the poisenbar to the poisen of the character
                 }
             });
         }, 200);
@@ -40,6 +45,22 @@ class World {
         this.ctx.translate(this.camera_x, 0);               // background moving-left //translate need 2 arguments (x, y)
 
         this.addObjectToMap(this.level.backgroundObjects)     // drawing the background
+
+        // Fix Healthbar
+        this.ctx.translate(-this.camera_x, 0);              //background moving-right //translate need 2 arguments (x, y)
+        this.addToMap(this.healthbar);                       // drawing the healthbar
+        this.ctx.translate(this.camera_x, 0);               // background moving-left //translate need 2 arguments (x, y)
+
+        // fix Coinbar
+        this.ctx.translate(-this.camera_x, 0);              //background moving-right //translate need 2 arguments (x, y)
+        this.addToMap(this.coinbar);                   // drawing the coinbar
+        this.ctx.translate(this.camera_x, 0);               // background moving-left //translate need 2 arguments (x, y)
+
+        // fix Poisenbar
+        this.ctx.translate(-this.camera_x, 0);              //background moving-right //translate need 2 arguments (x, y)
+        this.addToMap(this.poisenbar);                   // drawing the poisenbar
+        this.ctx.translate(this.camera_x, 0);               // background moving-left //translate need 2 arguments (x, y)
+
         this.addToMap(this.character);                  // drawing the character
         this.addObjectToMap(this.level.enemies);              // drawing the enemies 
         

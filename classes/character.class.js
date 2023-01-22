@@ -44,7 +44,7 @@ class Character extends MovableObject {
         "img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
         "img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
     ];
-    currentImage = 0;
+    
     world;
     under_water = new Audio("./audio/under_water.mp3");
 
@@ -59,6 +59,7 @@ class Character extends MovableObject {
 
     animate() {
         this.under_water.play();
+        
         setInterval(() => {
             if (
                 this.world.keyboard.RIGHT &&
