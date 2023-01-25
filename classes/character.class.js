@@ -44,6 +44,18 @@ class Character extends MovableObject {
         "img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
         "img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
     ];
+    offset = {
+        top : 120,
+        right : 100,
+        bottom : 180,
+        left : 50
+    };
+    //offset = {
+    //    top: 0,
+    //    right: 0,
+    //    bottom: 0,
+    //    left: 0,
+    //};
     
     world;
     under_water = new Audio("./audio/under_water.mp3");
@@ -98,6 +110,6 @@ class Character extends MovableObject {
                     this.playAnimation(this.moving);
                 }
             }
-        }, 210);
+        }, 200);
     }
 }

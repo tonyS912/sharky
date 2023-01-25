@@ -6,6 +6,13 @@ class MovableObject extends DrawableObject {
     coins = 0;
     poison = 0;
 
+    offset = {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+    };
+
     playAnimation(images) {
         let i = this.currentImage % images.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
         let path = images[i]; // pfad in den das bild geladen wird
@@ -28,16 +35,16 @@ class MovableObject extends DrawableObject {
     //Character.isColliding(Fish)
     isColliding(mo) {
         return (
-            this.x + this.width >= mo.x &&
-            this.y + this.height >= mo.y &&
-            this.x <= mo.x &&
-            this.y <= mo.y + mo.height
+            this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+            this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+            this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
         );
         // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
     }
 
     hit() {
-        this.energy -= 2;
+        this.energy -= 3;
         if (this.energy <= 0) {
             this.energy = 0;
         } else {
@@ -52,7 +59,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Zeit seit dem letzten Treffer
         timepassed = timepassed / 1000; // Umrechnen in Sekunden
-        return timepassed < 1; // Wenn weniger als 5 Sekunde vergangen ist, ist der Charakter noch verletzt
+        return timepassed < 1; // Wenn weniger als 1 Sekunde vergangen ist, ist der Charakter noch verletzt
     }
 
     addCoin() {
