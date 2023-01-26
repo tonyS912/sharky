@@ -22,6 +22,8 @@ class Coin extends MovableObject {
         this.x = x;
         this.y = y;
 
+        this.speed = 8;
+
         this.loadImages(this.hoverCoin);
         this.animate();
     }
@@ -29,6 +31,7 @@ class Coin extends MovableObject {
     animate() {
         setInterval(() => {
             this.playAnimation(this.hoverCoin)
+            
         }, 225);
     }
 }

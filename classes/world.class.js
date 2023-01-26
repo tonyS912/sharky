@@ -45,26 +45,31 @@ class World {
             if (this.character.isColliding(coin)) {
                 this.character.addCoin();
                 this.coinbar.setPercentage(this.character.coins); // set the coinbar to the coins of the character
+                this.delteCoin(coin);
             }
         });
         }, 200);
     }
 
+    delteCoin(coin) {
+        this.level.coins = this.level.coins.filter((c) => c !== coin);
+    }
 
-    /**
-     * TODO: check the collision of the poisen
-     */
     collisionPoisen() {
         setInterval(() => {
         this.level.poisen.forEach((poisen) => {
             if (this.character.isColliding(poisen)) {
                 this.character.addPoisen();
                 this.poisenbar.setPercentage(this.character.poisen); // set the poisenbar to the poisen of the character
+                this.deltePoisen(poisen);
             }
         });
         }, 200);
     }
 
+    deltePoisen(poisen) {
+        this.level.poisen = this.level.poisen.filter((p) => p !== poisen);
+    }
 
     /**
      * drawing the the context like
