@@ -23,6 +23,12 @@ class World {
     }
 
     checkCollision() {
+        this.collisionEnemy();
+        this.collisionCoin();
+        this.collisionPoisen();
+    }
+
+    collisionEnemy() {
         setInterval(() => {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
@@ -32,6 +38,33 @@ class World {
         });
         }, 200);
     }
+
+    collisionCoin() {
+        setInterval(() => {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                this.character.addCoin();
+                this.coinbar.setPercentage(this.character.coins); // set the coinbar to the coins of the character
+            }
+        });
+        }, 200);
+    }
+
+
+    /**
+     * TODO: check the collision of the poisen
+     */
+    collisionPoisen() {
+        setInterval(() => {
+        this.level.poisen.forEach((poisen) => {
+            if (this.character.isColliding(poisen)) {
+                this.character.addPoisen();
+                this.poisenbar.setPercentage(this.character.poisen); // set the poisenbar to the poisen of the character
+            }
+        });
+        }, 200);
+    }
+
 
     /**
      * drawing the the context like

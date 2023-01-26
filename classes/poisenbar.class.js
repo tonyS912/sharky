@@ -1,6 +1,6 @@
 class Poisenbar extends MovableObject {
 
-    poisonbar = [
+    poisenbar = [
         "img/4. Marcadores/green/poisoned bubbles/0_ copia 2.png",
         "img/4. Marcadores/green/poisoned bubbles/20_ copia 3.png",
         "img/4. Marcadores/green/poisoned bubbles/40_ copia 2.png",
@@ -11,7 +11,7 @@ class Poisenbar extends MovableObject {
 
     constructor() {
         super(); //Call parent constructor
-        this.loadImages(this.poisonbar); //Load all images
+        this.loadImages(this.poisenbar); //Load all images
         this.setPercentage(0); //Set default percentage for first run
         this.x = 5;
         this.y = 100;
@@ -21,7 +21,7 @@ class Poisenbar extends MovableObject {
 
     setPercentage(percentage) { //Set percentage and update image
         this.percentage = percentage;
-        let path = this.poisonbar[this.resolveImage()];
+        let path = this.poisenbar[this.resolveImage()];
         this.img = this.imageCache[path];
     }
 

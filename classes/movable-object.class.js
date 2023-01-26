@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     coins = 0;
-    poison = 0;
+    poisen = 0;
 
     offset = {
         top: 0,
@@ -74,8 +74,14 @@ class MovableObject extends DrawableObject {
         return timepassed < 1; // Wenn weniger als 1 Sekunde vergangen ist, ist der Charakter noch verletzt
     }
 
+    collectingCoins() {
+        let timepassed = new Date().getTime() - this.lastCoin; // Zeit seit dem letzten gesammelten Coin
+        timepassed = timepassed / 1000; // Umrechnen in Sekunden
+        return timepassed < 0.5; // Wenn weniger als 1 Sekunde vergangen ist, ist der Charakter noch verletzt
+    }
+
     addCoin() {
-        this.coins += 5;
+        this.coins += 8.34;
         if (this.coins >= 100) {
             this.coins = 100;
         } else {
@@ -84,11 +90,11 @@ class MovableObject extends DrawableObject {
     }
 
     addPoisen() {
-        this.poison += 5;
-        if (this.poison >= 100) {
-            this.poison = 100;
+        this.poisen += 16.67;
+        if (this.poisen >= 100) {
+            this.poisen = 100;
         } else {
-            this.lastPoison = new Date().getTime();
+            this.lastPoisen = new Date().getTime();
         }
     }
 }
