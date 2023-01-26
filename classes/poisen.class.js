@@ -12,10 +12,10 @@ class Poisen extends MovableObject {
         "img/4. Marcadores/Posiขn/Animada/8.png",
     ];
     offset = {
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
+        top: 5,
+        right: 8,
+        bottom: 5,
+        left: 8,
     };
 
     constructor(x, y, fall) {

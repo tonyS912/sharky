@@ -132,7 +132,7 @@ class World {
          * bild zeichnen und collision box zeichnen
          */
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
         if (mo.mirror) {
             this.flipImageBack(mo);
