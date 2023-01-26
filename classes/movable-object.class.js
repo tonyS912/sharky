@@ -32,6 +32,18 @@ class MovableObject extends DrawableObject {
         }, 1000 / 60);
     }
 
+    moveUp() {
+        setInterval(() => {
+            this.y -= this.speed;
+        }, 1000 / 60);
+    }
+
+    moveDown() {
+        setInterval(() => {
+            this.y += this.speed;
+        }, 1000 / 60);
+    }
+
     //Character.isColliding(Fish)
     isColliding(mo) {
         return (

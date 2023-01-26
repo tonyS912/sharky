@@ -29,17 +29,19 @@ class DrawableObject {
             this instanceof Character ||
             this instanceof Fish ||
             this instanceof JellyFish ||
-            this instanceof Endboss
+            this instanceof Endboss ||
+            this instanceof Coin ||
+            this instanceof Poisen
         ) {
-            ctx.beginPath();
-            ctx.lineWidth = "3"; //dicke des rechtecks
-            ctx.strokeStyle = "red"; //farbe des rechtecks
-            ctx.rect(this.x, this.y, this.width, this.height); //größe des rechtecks
-            ctx.stroke(); //zeichnen des rechtecks
+            //ctx.beginPath();
+            //ctx.lineWidth = "3"; //dicke des rechtecks
+            //ctx.strokeStyle = "red"; //farbe des rechtecks
+            //ctx.rect(this.x, this.y, this.width, this.height); //größe des rechtecks
+            //ctx.stroke(); //zeichnen des rechtecks
             ctx.beginPath();
             ctx.lineWidth = "3"; //dicke des rechtecks
             ctx.strokeStyle = "blue"; //farbe des rechtecks
-            ctx.rect(this.x + this.offset.left , this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom); //größe des rechtecks
+            ctx.rect(this.x + this.offset.left , this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top); //größe des rechtecks
             ctx.stroke(); //zeichnen des rechtecks
 
         }

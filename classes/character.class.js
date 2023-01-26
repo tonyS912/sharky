@@ -45,9 +45,9 @@ class Character extends MovableObject {
         "img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
     ];
     offset = {
-        top : 120,
-        right : 100,
-        bottom : 180,
+        top : 100,
+        right : 50,
+        bottom : 50,
         left : 50
     };
     //offset = {

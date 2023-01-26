@@ -59,6 +59,8 @@ class World {
         this.ctx.translate(this.camera_x, 0); // background moving-left //translate need 2 arguments (x, y)
 
         this.addToMap(this.character); // drawing the character
+        this.addObjectToMap(this.level.coins); // drawing the coins
+        this.addObjectToMap(this.level.poisen); // drawing the poisen
         this.addObjectToMap(this.level.enemies); // drawing the enemies
 
         this.ctx.translate(-this.camera_x, 0); //background moving-right //translate need 2 arguments (x, y)
