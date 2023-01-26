@@ -9,7 +9,9 @@ const level1 = new Level(
         new Fish(1550, 70),
         new Fish(1650, 210),
         new Fish(1750, 350),
-        new JellyFish(),
+        new JellyFish(265, 410),
+        new JellyFish(800, 510),
+        new JellyFish(1650, 610),
         new Endboss(),
     ],
     [

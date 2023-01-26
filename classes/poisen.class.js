@@ -1,7 +1,6 @@
 class Poisen extends MovableObject {
     height = 60;
     width = 60;
-    speed = 0.75;
     hoverPoisen = [
         "img/4. Marcadores/Posiขn/Animada/1.png",
         "img/4. Marcadores/Posiขn/Animada/2.png",
@@ -26,6 +25,8 @@ class Poisen extends MovableObject {
 
         this.x = x;
         this.y = y;
+
+        this.speed = 0.7 + Math.random() * 0.25;;
 
         this.loadImages(this.hoverPoisen);
         this.animate();

@@ -16,16 +16,19 @@ class JellyFish extends MovableObject {
         left: 0,
     };
 
-    constructor() {
+    constructor(x, y) {
         super().loadImage(
             "img/2.Enemy/2 Jelly fish/Regular damage/Yellow 1.png"
         );
 
-        this.x = 200 + Math.random() * 500;
-        this.y = 30 + Math.random() * 420;
+        this.x =  x  // 200 + Math.random() * 500;
+        this.y =  y  // 30 + Math.random() * 420;
+
+        this.speed = 0.5 + Math.random() * 0.5;
 
         this.loadImages(this.moving);
         this.animate();
+        this.moveUp();
     }
 
     animate() {
