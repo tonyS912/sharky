@@ -54,7 +54,7 @@ class World {
                 this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
             }
         });
-        }, 200);
+        }, 2200);
     }
 
     collisionCoin() {
