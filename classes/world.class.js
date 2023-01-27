@@ -3,6 +3,7 @@ class World {
     healthbar = new Healthbar();
     coinbar = new Coinbar();
     poisenbar = new Poisenbar();
+    throwableObjects = []; // Array für die Wurfobjekte // for testing: new ThrowableObject(this.character.x , this.character.y)
     level = level1;
     canvas;
     ctx; // Contex
@@ -23,10 +24,27 @@ class World {
     }
 
     checkCollision() {
-        this.collisionEnemy();
-        this.collisionCoin();
-        this.collisionPoisen();
+        setInterval(() => {
+
+            this.collisionEnemy();
+            this.collisionCoin();
+            this.collisionPoisen();
+            this.checkThrowableObject();
+
+        }, 150);
     }
+
+    checkThrowableObject() {
+        if (this.keyboard.SPACE && this.poisenbar.percentage > 0) {
+            let bubble = new ThrowableObject(this.character.x, this.character.y);
+            this.throwableObjects.push(bubble);
+            if (this.keyboard.SPACE) {
+                this.character.removePoisen();
+                this.poisenbar.setPercentage(this.character.poisen);
+            }
+
+        }
+    }  
 
     collisionEnemy() {
         setInterval(() => {
@@ -51,6 +69,10 @@ class World {
         }, 200);
     }
 
+    /**
+     * filter in a array the coin that should be deleted
+     * @param {class} coin - the coin that should be deleted 
+     */
     delteCoin(coin) {
         this.level.coins = this.level.coins.filter((c) => c !== coin);
     }
@@ -100,6 +122,8 @@ class World {
         this.addObjectToMap(this.level.coins); // drawing the coins
         this.addObjectToMap(this.level.poisen); // drawing the poisen
         this.addObjectToMap(this.level.enemies); // drawing the enemies
+        this.addObjectToMap(this.throwableObjects); // drawing the throwableObjects
+        
 
         this.ctx.translate(-this.camera_x, 0); //background moving-right //translate need 2 arguments (x, y)
 
@@ -132,6 +156,10 @@ class World {
          * bild zeichnen und collision box zeichnen
          */
         mo.draw(this.ctx);
+        
+        /**
+         * ! only for debugging and development
+         */
         //mo.drawFrame(this.ctx);
 
         if (mo.mirror) {

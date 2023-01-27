@@ -90,9 +90,18 @@ class MovableObject extends DrawableObject {
     }
 
     addPoisen() {
-        this.poisen += 16.67;
+        this.poisen += 20;
         if (this.poisen >= 100) {
             this.poisen = 100;
+        } else {
+            this.lastPoisen = new Date().getTime();
+        }
+    }
+
+    removePoisen() {
+        this.poisen -= 20;
+        if (this.poisen <= 0) {
+            this.poisen = 0;
         } else {
             this.lastPoisen = new Date().getTime();
         }

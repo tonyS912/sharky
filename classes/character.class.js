@@ -3,7 +3,9 @@ class Character extends MovableObject {
     width = 225;
     frameX = 120;
     frameY = 90;
-    speed = 6;
+    speed = 5;
+    lastBubble = 0;
+    spacebar = false;
     moving = [
         "./img/1.Sharkie/1.IDLE/1.png",
         "./img/1.Sharkie/1.IDLE/2.png",
@@ -44,19 +46,25 @@ class Character extends MovableObject {
         "img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
         "img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
     ];
+    bubbleShooting = [
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png",
+        "img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png",
+    ];
+    bubbleFlying = [
+        "img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png",
+    ];
     offset = {
         top : 100,
         right : 50,
         bottom : 50,
         left : 50
-    };
-    //offset = {
-    //    top: 0,
-    //    right: 0,
-    //    bottom: 0,
-    //    left: 0,
-    //};
-    
+    };    
     world;
     under_water = new Audio("./audio/under_water.mp3");
 
@@ -65,12 +73,14 @@ class Character extends MovableObject {
         this.loadImages(this.moving); // gesamtes array laden für die Bewegungsanimation des Charakters
         this.loadImages(this.dying); // gesamtes array laden für die Sterbeanimation des Charakters
         this.loadImages(this.hurt); // gesamtes array laden für die Verletzungsanimation des Charakters
+        this.loadImages(this.bubbleShooting); // gesamtes array laden für die Bubble Shooting Animation des Charakters
+        this.loadImages(this.bubbleFlying); // gesamtes array laden für die Bubble Flying Animation des Charakters
 
         this.animate();
     }
 
     animate() {
-        this.under_water.play();
+        //this.under_water.play();
         
         setInterval(() => {
             if (

@@ -14,10 +14,6 @@ function init() {
  * Eventlistener der auf keydown achtet
  */
 window.addEventListener("keydown", (e) => {
-    if (e.code == "Space") {
-        keyboard.SPACE = true;
-    }
-
     if (e.code == "ArrowRight") {
         keyboard.RIGHT = true;
     }
@@ -32,6 +28,10 @@ window.addEventListener("keydown", (e) => {
 
     if (e.code == "ArrowDown") {
         keyboard.DOWN = true;
+    }
+
+    if (e.code == "Space") {
+        keyboard.SPACE = true;
     }
 });
 
@@ -56,3 +56,10 @@ window.addEventListener("keyup", (e) => {
         keyboard.DOWN = false;
     }
 });
+
+function stopInterval() {
+    let intervatId = window.setInterval(() => {}, 9999);
+    for (let i = 0; i < intervatId; i++) {
+        window.clearInterval(i);
+    }
+}

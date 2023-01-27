@@ -63,6 +63,6 @@ const level1 = new Level(
         new Poisen(1100, 390, false),
         new Poisen(1300, 400, false),
         new Poisen(640, 0, true),
-        new Poisen(1390, -200, true),
+        new Poisen(1390, -400, true),
     ],
 );
