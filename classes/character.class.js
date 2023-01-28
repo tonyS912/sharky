@@ -60,9 +60,9 @@ class Character extends MovableObject {
         "img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png",
     ];
     offset = {
-        top : 100,
+        top : 110,
         right : 50,
-        bottom : 50,
+        bottom : 55,
         left : 50
     };    
     world;

@@ -35,7 +35,8 @@ class DrawableObject {
             this instanceof JellyFish ||
             this instanceof Endboss ||
             this instanceof Coin ||
-            this instanceof Poisen
+            this instanceof Poisen ||
+            this instanceof ThrowableObject
         ) {
             //ctx.beginPath();
             //ctx.lineWidth = "3"; //dicke des rechtecks

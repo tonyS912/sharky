@@ -25,53 +25,90 @@ class World {
 
     checkCollision() {
         setInterval(() => {
-
             this.collisionEnemy();
             this.collisionCoin();
             this.collisionPoisen();
             this.checkThrowableObject();
-
+            this.collisionBubble2();
         }, 150);
     }
 
     checkThrowableObject() {
         if (this.keyboard.SPACE && this.poisenbar.percentage > 0) {
-            let bubble = new ThrowableObject(this.character.x, this.character.y);
+            let bubble = new ThrowableObject(
+                this.character.x,
+                this.character.y
+            );
             this.throwableObjects.push(bubble);
             if (this.keyboard.SPACE) {
                 this.character.removePoisen();
                 this.poisenbar.setPercentage(this.character.poisen);
             }
-
         }
-    }  
+    }
+
+    collisionBubble() {
+        setInterval(() => {
+            this.throwableObjects.forEach((bubble) => {
+                this.level.enemies.forEach((enemy) => {
+                    if (bubble.isColliding(enemy)) {
+                        this.delteBubble(bubble);
+                        this.deleteEnemy(enemy);
+                    }
+                });
+            });
+        }, 200);
+    }
+
+    delteBubble(bubble) {
+        this.throwableObjects = this.throwableObjects.filter(
+            (b) => b !== bubble
+        );
+    }
+
+    deleteEnemy(enemy) {
+        this.level.enemies = this.level.enemies.filter((e) => e !== enemy);
+    }
+
+    collisionBubble2() {
+        setInterval(() => {
+            this.throwableObjects.forEach((bubble) => {
+                this.level.enemies.forEach((enemy) => {
+                    if (bubble.isColliding(enemy)) {
+                        this.delteBubble(bubble);
+                        enemy.fishHit();
+                    }
+                });
+            });
+        }, 200);
+    }
 
     collisionEnemy() {
         setInterval(() => {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
-                this.character.hit();
-                this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
-            }
-        });
+            this.level.enemies.forEach((enemy) => {
+                if (this.character.isColliding(enemy)) {
+                    this.character.hit();
+                    this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
+                }
+            });
         }, 2200);
     }
 
     collisionCoin() {
         setInterval(() => {
-        this.level.coins.forEach((coin) => {
-            if (this.character.isColliding(coin)) {
-                this.character.addCoin();
-                this.coinbar.setPercentage(this.character.coins); // set the coinbar to the coins of the character
-                this.delteCoin(coin);
-            }
-        });
+            this.level.coins.forEach((coin) => {
+                if (this.character.isColliding(coin)) {
+                    this.character.addCoin();
+                    this.coinbar.setPercentage(this.character.coins); // set the coinbar to the coins of the character
+                    this.delteCoin(coin);
+                }
+            });
         }, 200);
     }
 
     /**
      * filter in a array the coin that should be deleted
-     * @param {class} coin - the coin that should be deleted 
+     * @param {class} coin - the coin that should be deleted
      */
     delteCoin(coin) {
         this.level.coins = this.level.coins.filter((c) => c !== coin);
@@ -79,13 +116,13 @@ class World {
 
     collisionPoisen() {
         setInterval(() => {
-        this.level.poisen.forEach((poisen) => {
-            if (this.character.isColliding(poisen)) {
-                this.character.addPoisen();
-                this.poisenbar.setPercentage(this.character.poisen); // set the poisenbar to the poisen of the character
-                this.deltePoisen(poisen);
-            }
-        });
+            this.level.poisen.forEach((poisen) => {
+                if (this.character.isColliding(poisen)) {
+                    this.character.addPoisen();
+                    this.poisenbar.setPercentage(this.character.poisen); // set the poisenbar to the poisen of the character
+                    this.deltePoisen(poisen);
+                }
+            });
         }, 200);
     }
 
@@ -123,7 +160,6 @@ class World {
         this.addObjectToMap(this.level.poisen); // drawing the poisen
         this.addObjectToMap(this.level.enemies); // drawing the enemies
         this.addObjectToMap(this.throwableObjects); // drawing the throwableObjects
-        
 
         this.ctx.translate(-this.camera_x, 0); //background moving-right //translate need 2 arguments (x, y)
 
@@ -156,7 +192,7 @@ class World {
          * bild zeichnen und collision box zeichnen
          */
         mo.draw(this.ctx);
-        
+
         /**
          * ! only for debugging and development
          */

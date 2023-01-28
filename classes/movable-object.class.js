@@ -4,7 +4,8 @@ class MovableObject extends DrawableObject {
     energy = 100;
     lastHit = 0;
     coins = 0;
-    poisen = 0;
+    poisen = 0; 
+    attack = true;
 
     offset = {
         top: 0,
@@ -62,9 +63,20 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-    }
+    }   
 
     isDead() {
+        return this.energy == 0;
+    }
+
+    fishHit() {
+        this.energy -= 100;
+        if (this.energy <= 0) {
+            this.energy = 0;
+        }
+    }
+
+    fishDead() {
         return this.energy == 0;
     }
 
