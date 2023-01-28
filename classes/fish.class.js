@@ -48,8 +48,8 @@ class Fish extends MovableObject {
             this.playAnimation(this.moving);
             
             if (this.isDead()) {
-                clearInterval(this.moveLeft);
-                this.speed = 2;
+                this.speedX = 0;
+                this.speedY = 2;
                 this.moveUp();
                 this.playAnimation(this.fishDead);
             }

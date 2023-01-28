@@ -1,10 +1,13 @@
 class MovableObject extends DrawableObject {
-    speed = 0.25;
+    speedX = 0.25;
+    speedY = 0.25;
     mirror = false;
     energy = 100;
     lastHit = 0;
     coins = 0;
     poisen = 0; 
+    airBubble = 6;
+    lastBubble = 0;
     attack = true;
 
     offset = {
@@ -23,25 +26,25 @@ class MovableObject extends DrawableObject {
 
     moveRight() {
         setInterval(() => {
-            this.x += this.speed;
+            this.x += this.speedX;
         }, 1000 / 60);
     }
 
     moveLeft() {
         setInterval(() => {
-            this.x -= this.speed;
+            this.x -= this.speedX;
         }, 1000 / 60);
     }
 
     moveUp() {
         setInterval(() => {
-            this.y -= this.speed;
+            this.y -= this.speedY;
         }, 1000 / 60);
     }
 
     moveDown() {
         setInterval(() => {
-            this.y += this.speed;
+            this.y += this.speedY;
         }, 1000 / 60);
     }
 
@@ -54,6 +57,15 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
         );
         // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    }
+
+    shootBubble() {
+        this.airBubble -= 1;
+        if (this.airBubble <= 0) {
+            this.airBubble = 0;
+        } else {
+            this.lastBubble = new Date().getTime();
+        }
     }
 
     hit() {
@@ -74,10 +86,6 @@ class MovableObject extends DrawableObject {
         if (this.energy <= 0) {
             this.energy = 0;
         }
-    }
-
-    fishDead() {
-        return this.energy == 0;
     }
 
     isHurt() {

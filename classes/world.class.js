@@ -29,48 +29,22 @@ class World {
             this.collisionCoin();
             this.collisionPoisen();
             this.checkThrowableObject();
-            this.collisionBubble2();
+            this.collisionBubble();
         }, 150);
     }
 
     checkThrowableObject() {
-        if (this.keyboard.SPACE && this.poisenbar.percentage > 0) {
+        if (this.keyboard.SPACE && this.character.airBubble > 0) {
             let bubble = new ThrowableObject(
                 this.character.x,
-                this.character.y
+                this.character.y,
             );
             this.throwableObjects.push(bubble);
-            if (this.keyboard.SPACE) {
-                this.character.removePoisen();
-                this.poisenbar.setPercentage(this.character.poisen);
-            }
+            this.character.airBubble--;
         }
     }
 
     collisionBubble() {
-        setInterval(() => {
-            this.throwableObjects.forEach((bubble) => {
-                this.level.enemies.forEach((enemy) => {
-                    if (bubble.isColliding(enemy)) {
-                        this.delteBubble(bubble);
-                        this.deleteEnemy(enemy);
-                    }
-                });
-            });
-        }, 200);
-    }
-
-    delteBubble(bubble) {
-        this.throwableObjects = this.throwableObjects.filter(
-            (b) => b !== bubble
-        );
-    }
-
-    deleteEnemy(enemy) {
-        this.level.enemies = this.level.enemies.filter((e) => e !== enemy);
-    }
-
-    collisionBubble2() {
         setInterval(() => {
             this.throwableObjects.forEach((bubble) => {
                 this.level.enemies.forEach((enemy) => {
@@ -81,6 +55,12 @@ class World {
                 });
             });
         }, 200);
+    }
+
+    delteBubble(bubble) {
+        this.throwableObjects = this.throwableObjects.filter(
+            (b) => b !== bubble
+        );
     }
 
     collisionEnemy() {

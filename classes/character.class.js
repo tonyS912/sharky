@@ -4,7 +4,6 @@ class Character extends MovableObject {
     frameX = 120;
     frameY = 90;
     speed = 5;
-    lastBubble = 0;
     spacebar = false;
     moving = [
         "./img/1.Sharkie/1.IDLE/1.png",
@@ -56,9 +55,6 @@ class Character extends MovableObject {
         "img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png",
         "img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png",
     ];
-    bubbleFlying = [
-        "img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png",
-    ];
     offset = {
         top : 110,
         right : 50,
@@ -74,8 +70,7 @@ class Character extends MovableObject {
         this.loadImages(this.dying); // gesamtes array laden für die Sterbeanimation des Charakters
         this.loadImages(this.hurt); // gesamtes array laden für die Verletzungsanimation des Charakters
         this.loadImages(this.bubbleShooting); // gesamtes array laden für die Bubble Shooting Animation des Charakters
-        this.loadImages(this.bubbleFlying); // gesamtes array laden für die Bubble Flying Animation des Charakters
-
+    
         this.animate();
     }
 
@@ -118,7 +113,7 @@ class Character extends MovableObject {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
                     // Moving animation
                     this.playAnimation(this.moving);
-                }
+                } 
             }
         }, 200);
     }
