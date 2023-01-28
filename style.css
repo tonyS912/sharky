@@ -1,7 +1,16 @@
 body {
+    height: 98vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-image: url("img/irina-iriser-dxk6tMxNkJY-unsplash.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: antiquewhite;
+    background-color: #010937;
+    overflow: hidden;
 }
 canvas {
     background-color: black;

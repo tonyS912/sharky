@@ -6,8 +6,15 @@ function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
 
-    console.log("My Character is", world.character);
-    console.log(world.enemies);
+    
+}
+
+function restart() {
+    window.location.replace("index.html");
+}
+
+function hideStartBtn() {
+    document.getElementById("startBtn").style.display = "none";
 }
 
 /**

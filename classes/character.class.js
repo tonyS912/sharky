@@ -37,7 +37,10 @@ class Character extends MovableObject {
         "img/1.Sharkie/6.dead/1.Poisoned/9.png",
         "img/1.Sharkie/6.dead/1.Poisoned/10.png",
         "img/1.Sharkie/6.dead/1.Poisoned/11.png",
-        "img/1.Sharkie/6.dead/1.Poisoned/12.png"
+        "img/1.Sharkie/6.dead/1.Poisoned/12.png",
+    ];
+    dead = [
+        "img/1.Sharkie/6.dead/1.Poisoned/12.png",   //not in use this time
     ];
     hurt = [
         "img/1.Sharkie/5.Hurt/1.Poisoned/1.png",

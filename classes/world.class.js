@@ -49,7 +49,7 @@ class World {
             this.throwableObjects.forEach((bubble) => {
                 this.level.enemies.forEach((enemy) => {
                     if (bubble.isColliding(enemy)) {
-                        this.delteBubble(bubble);
+                        this.deleteBubble(bubble);
                         enemy.fishHit();
                     }
                 });
@@ -57,7 +57,7 @@ class World {
         }, 200);
     }
 
-    delteBubble(bubble) {
+    deleteBubble(bubble) {
         this.throwableObjects = this.throwableObjects.filter(
             (b) => b !== bubble
         );
