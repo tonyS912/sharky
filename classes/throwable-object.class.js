@@ -1,4 +1,5 @@
 class ThrowableObject extends MovableObject {
+    bubble_shoot = new Audio("./audio/deep-water-bubble.wav");
 
     constructor(x, y) {
         super().loadImage('img/1.Sharkie/4.Attack/Bubble trap/Bubble.png');
@@ -12,6 +13,7 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
+        this.bubble_shoot.play();
         this.speedX = 4.5;
         this.moveRight();
     }

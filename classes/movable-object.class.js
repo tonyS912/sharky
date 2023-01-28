@@ -17,6 +17,7 @@ class MovableObject extends DrawableObject {
         left: 0,
     };
 
+
     playAnimation(images) {
         let i = this.currentImage % images.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
         let path = images[i]; // pfad in den das bild geladen wird

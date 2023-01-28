@@ -9,6 +9,9 @@ class World {
     ctx; // Contex
     keyboard;
     camera_x = 0;
+    toAddCoin = new Audio("./audio/collectcoin.mp3");
+    bubble_hit = new Audio("./audio/bubble_hit.mp3");
+    toAddPoisen = new Audio("./audio/whispers-and-screams.mp3");
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -51,6 +54,7 @@ class World {
                     if (bubble.isColliding(enemy)) {
                         this.deleteBubble(bubble);
                         enemy.fishHit();
+                        this.bubble_hit.play();
                     }
                 });
             });
@@ -92,6 +96,7 @@ class World {
      */
     delteCoin(coin) {
         this.level.coins = this.level.coins.filter((c) => c !== coin);
+        this.toAddCoin.play();
     }
 
     collisionPoisen() {
@@ -108,6 +113,8 @@ class World {
 
     deltePoisen(poisen) {
         this.level.poisen = this.level.poisen.filter((p) => p !== poisen);
+        this.toAddPoisen.play();
+
     }
 
     /**

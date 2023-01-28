@@ -66,6 +66,8 @@ class Character extends MovableObject {
     };    
     world;
     under_water = new Audio("./audio/under_water.mp3");
+    swim = new Audio("./audio/swim.mp3");
+    
 
     constructor() {
         super().loadImage("img/1.Sharkie/1.IDLE/1.png"); // erstes Bild laden
@@ -78,7 +80,7 @@ class Character extends MovableObject {
     }
 
     animate() {
-        //this.under_water.play();
+
         
         setInterval(() => {
             if (
@@ -87,21 +89,25 @@ class Character extends MovableObject {
             ) {
                 this.x += this.speed;
                 this.mirror = false;
+                this.swim.play();
             }
-
+            
             if (this.world.keyboard.LEFT && this.x > -400) {
                 this.x -= this.speed;
                 this.mirror = true;
+                this.swim.play();
             }
-
+            
             if (this.world.keyboard.UP && this.y > -100) {
                 this.y -= this.speed;
+                this.swim.play();
             }
-
+            
             if (this.world.keyboard.DOWN && this.y < 300) {
                 this.y += this.speed;
+                this.swim.play();
             }
-
+            
             this.world.camera_x = -this.x + 40; // Character starts not on the left border, it starts a littlebit more right in the area
         }, 1000 / 60);
 
