@@ -47,7 +47,7 @@ class DrawableObject {
             ctx.lineWidth = "3"; //dicke des rechtecks
             ctx.strokeStyle = "blue"; //farbe des rechtecks
             ctx.rect(this.x + this.offset.left , this.y + this.offset.top, this.width - this.offset.right - this.offset.left, this.height - this.offset.bottom - this.offset.top); //größe des rechtecks
-            ctx.stroke(); //zeichnen des rechtec
+            ctx.stroke(); //zeichnen des rechtecks
         }
     }
 }

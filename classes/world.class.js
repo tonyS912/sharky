@@ -12,6 +12,7 @@ class World {
     toAddCoin = new Audio("./audio/collectcoin.mp3");
     bubble_hit = new Audio("./audio/bubble_hit.mp3");
     toAddPoisen = new Audio("./audio/whispers-and-screams.mp3");
+    player_hit = new Audio("./audio/player-hurt.mp3");
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -32,6 +33,7 @@ class World {
             this.collisionCoin();
             this.collisionPoisen();
             this.checkThrowableObject();
+            this.checkThrowableObjectPoisen();
             this.collisionBubble();
         }, 150);
     }
@@ -41,9 +43,22 @@ class World {
             let bubble = new ThrowableObject(
                 this.character.x,
                 this.character.y,
+                //this.check = true,
             );
             this.throwableObjects.push(bubble);
             this.character.airBubble--;
+        }
+    }
+
+    checkThrowableObjectPoisen() {
+        if (this.keyboard.F) {                                         // && this.Poisenbar > 0
+            let poisen = new ThrowableObject(
+                this.character.x,
+                this.character.y,
+                //this.check = false,
+            );
+            this.throwableObjects.push(poisen);
+            this.character.poisen -= 20;
         }
     }
 
@@ -55,6 +70,20 @@ class World {
                         this.deleteBubble(bubble);
                         enemy.fishHit();
                         this.bubble_hit.play();
+                    }
+                });
+            });
+        }, 200);
+    }
+
+    collisionBubblePoisen() {
+        setInterval(() => {
+            this.throwableObjects.forEach((poisen) => {
+                this.level.enemies((Endboss) => {
+                    if (poisen.isColliding(enemy)) {
+                        this.deleteBubble(poisen);
+                        enemy.fishHit();
+                        this.dark_bubble_hit.play();
                     }
                 });
             });
@@ -73,6 +102,7 @@ class World {
                 if (this.character.isColliding(enemy)) {
                     this.character.hit();
                     this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
+                    this.player_hit.play();
                 }
             });
         }, 2200);

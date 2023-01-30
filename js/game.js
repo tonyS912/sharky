@@ -21,24 +21,28 @@ function hideStartBtn() {
  * Eventlistener der auf keydown achtet
  */
 window.addEventListener("keydown", (e) => {
-    if (e.code == "ArrowRight") {
+    if (e.code == "ArrowRight" || e.code == "KeyD") {
         keyboard.RIGHT = true;
     }
 
-    if (e.code == "ArrowLeft") {
+    if (e.code == "ArrowLeft" || e.code == "KeyA") {
         keyboard.LEFT = true;
     }
 
-    if (e.code == "ArrowUp") {
+    if (e.code == "ArrowUp" || e.code == "KeyW") {
         keyboard.UP = true;
     }
 
-    if (e.code == "ArrowDown") {
+    if (e.code == "ArrowDown" || e.code == "KeyS") {
         keyboard.DOWN = true;
     }
 
     if (e.code == "Space") {
         keyboard.SPACE = true;
+    }
+
+    if (e.code == "KeyF") {
+        keyboard.F = true;
     }
 });
 
@@ -47,19 +51,19 @@ window.addEventListener("keyup", (e) => {
         keyboard.SPACE = false;
     }
 
-    if (e.code == "ArrowRight") {
+    if (e.code == "ArrowRight" || e.code == "KeyD") {
         keyboard.RIGHT = false;
     }
 
-    if (e.code == "ArrowLeft") {
+    if (e.code == "ArrowLeft" || e.code == "KeyA") {
         keyboard.LEFT = false;
     }
 
-    if (e.code == "ArrowUp") {
+    if (e.code == "ArrowUp" || e.code == "KeyW") {
         keyboard.UP = false;
     }
 
-    if (e.code == "ArrowDown") {
+    if (e.code == "ArrowDown" || e.code == "KeyS") {
         keyboard.DOWN = false;
     }
 });

@@ -84,7 +84,7 @@ class Character extends MovableObject {
         
         setInterval(() => {
             if (
-                this.world.keyboard.RIGHT &&
+                (this.world.keyboard.RIGHT || this.world.keyboard.D) &&
                 this.x < this.world.level.level_end_x
             ) {
                 this.x += this.speed;
@@ -92,18 +92,18 @@ class Character extends MovableObject {
                 this.swim.play();
             }
             
-            if (this.world.keyboard.LEFT && this.x > -400) {
+            if ((this.world.keyboard.LEFT || this.world.keyboard.A) && this.x > -400) {
                 this.x -= this.speed;
                 this.mirror = true;
                 this.swim.play();
             }
             
-            if (this.world.keyboard.UP && this.y > -100) {
+            if ((this.world.keyboard.UP || this.world.keyboard.W) && this.y > -100) {
                 this.y -= this.speed;
                 this.swim.play();
             }
             
-            if (this.world.keyboard.DOWN && this.y < 300) {
+            if ((this.world.keyboard.DOWN || this.world.keyboard.S) && this.y < 300) {
                 this.y += this.speed;
                 this.swim.play();
             }
@@ -119,7 +119,8 @@ class Character extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.hurt); 
             } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN) {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN
+                    || this.world.keyboard.A || this.world.keyboard.D || this.world.keyboard.W || this.world.keyboard.S) {
                     // Moving animation
                     this.playAnimation(this.moving);
                 } 
