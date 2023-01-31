@@ -51,6 +51,10 @@ window.addEventListener("keyup", (e) => {
         keyboard.SPACE = false;
     }
 
+    if (e.code == "KeyF") {
+        keyboard.F = false;
+    }
+
     if (e.code == "ArrowRight" || e.code == "KeyD") {
         keyboard.RIGHT = false;
     }
