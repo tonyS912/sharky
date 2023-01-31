@@ -84,7 +84,7 @@ class World {
     collisionBubblePoisen() {
         setInterval(() => {
             this.throwableObjects.forEach((poisen) => {
-                this.level.enemies.Endboss((enemy) => {
+                this.level.enemies.forEach((enemy) => {
                     if (poisen.isColliding(enemy)) {
                         this.deleteBubblePoisen(poisen);
                         enemy.fishHit();
@@ -110,7 +110,7 @@ class World {
     collisionEnemy() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
-                if (this.character.isColliding(enemy)) {
+                if (this.character.isColliding(enemy) && !enemy.isDead()) {
                     this.character.hit();
                     this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
                     this.player_hit.play();

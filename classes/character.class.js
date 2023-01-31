@@ -117,7 +117,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.dying);
             } else if (this.isHurt()) {
-                this.playAnimation(this.hurt); 
+                this.playAnimation(this.hurt);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN
                     || this.world.keyboard.A || this.world.keyboard.D || this.world.keyboard.W || this.world.keyboard.S) {
