@@ -6,7 +6,7 @@ class ThrowableObject extends MovableObject {
         "./img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png",
     ];
 
-    constructor(x, y) {
+    constructor(x, y, check) {
         super().loadImage("img/1.Sharkie/4.Attack/Bubble trap/Bubble.png");
 
         this.x = x + 175;
@@ -14,8 +14,11 @@ class ThrowableObject extends MovableObject {
         this.width = 70;
         this.height = 70;
 
-        //this.throw();
-        this.throwPoison();
+        if (check == true) {
+            this.throw();
+        } else {
+            this.throwPoison();
+        }
     }
 
     throw() {
@@ -26,7 +29,7 @@ class ThrowableObject extends MovableObject {
 
     throwPoison() {
         this.loadImage(this.darkBubble);
-        this.dark_bubble_shoot.play();
+        this.bubble_shoot.play();
         this.speedX = 2.25;
         this.moveRight();
     }

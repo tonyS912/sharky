@@ -13,6 +13,7 @@ class World {
     bubble_hit = new Audio("./audio/bubble_hit.mp3");
     toAddPoisen = new Audio("./audio/whispers-and-screams.mp3");
     player_hit = new Audio("./audio/player-hurt.mp3");
+    dark_bubble_hit = new Audio("./audio/dark-hit.mp3");
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext("2d");
@@ -43,7 +44,7 @@ class World {
             let bubble = new ThrowableObject(
                 this.character.x,
                 this.character.y,
-                //this.check = true,
+                this.check = true,
             );
             this.throwableObjects.push(bubble);
             this.character.airBubble--;
@@ -51,14 +52,15 @@ class World {
     }
 
     checkThrowableObjectPoisen() {
-        if (this.keyboard.F) {                                         // && this.Poisenbar > 0
+        if (this.keyboard.F && this.character.poisen > 0) {
             let poisen = new ThrowableObject(
                 this.character.x,
                 this.character.y,
-                //this.check = false,
+                this.check = false,
             );
             this.throwableObjects.push(poisen);
-            this.character.poisen -= 20;
+            this.character.removePoisen();
+            this.poisenbar.setPercentage(this.character.poisen);
         }
     }
 
@@ -76,12 +78,15 @@ class World {
         }, 200);
     }
 
+    /**
+     * TODO: collisionBubblePoisen() funktioniert nicht
+     */
     collisionBubblePoisen() {
         setInterval(() => {
             this.throwableObjects.forEach((poisen) => {
-                this.level.enemies((Endboss) => {
+                this.level.enemies.Endboss((enemy) => {
                     if (poisen.isColliding(enemy)) {
-                        this.deleteBubble(poisen);
+                        this.deleteBubblePoisen(poisen);
                         enemy.fishHit();
                         this.dark_bubble_hit.play();
                     }
@@ -96,6 +101,12 @@ class World {
         );
     }
 
+    deleteBubblePoisen(poisen) {
+        this.throwableObjects = this.throwableObjects.filter(
+            (p) => p !== poisen
+        );
+    }
+
     collisionEnemy() {
         setInterval(() => {
             this.level.enemies.forEach((enemy) => {
@@ -104,6 +115,14 @@ class World {
                     this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
                     this.player_hit.play();
                 }
+            });
+        }, 2200);
+    }
+
+    noCollisionEnemy() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                this.character.isColliding(enemy);
             });
         }, 2200);
     }
@@ -213,7 +232,7 @@ class World {
         /**
          * ! only for debugging and development
          */
-        //mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if (mo.mirror) {
             this.flipImageBack(mo);
