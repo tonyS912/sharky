@@ -24,6 +24,10 @@ class World {
         this.checkCollision();
     }
 
+    restart() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+
     setWorld() {
         this.character.world = this;
     }
@@ -44,7 +48,7 @@ class World {
             let bubble = new ThrowableObject(
                 this.character.x,
                 this.character.y,
-                this.check = true,
+                (this.check = true)
             );
             this.throwableObjects.push(bubble);
             this.character.airBubble--;
@@ -56,7 +60,7 @@ class World {
             let poisen = new ThrowableObject(
                 this.character.x,
                 this.character.y,
-                this.check = false,
+                (this.check = false)
             );
             this.throwableObjects.push(poisen);
             this.character.removePoisen();
@@ -163,7 +167,15 @@ class World {
     deltePoisen(poisen) {
         this.level.poisen = this.level.poisen.filter((p) => p !== poisen);
         this.toAddPoisen.play();
+    }
 
+    checkDistanceToEndboss() {
+        let distanceEndboss = this.endboss.x - this.character.x;
+        if (distanceEndboss < 450) {
+            this.endboss.nearCharacter = true;
+        } else {
+            this.endboss.nearCharacter = false;
+        }
     }
 
     /**

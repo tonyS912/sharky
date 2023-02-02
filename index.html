@@ -1,42 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css" />
 
-    <script src="./classes/drawable-objects.class.js"></script>
-    <script src="./classes/movable-object.class.js"></script>
-    <!-- <script src="./classes/consolidateing-objects.class.js"></script> -->
-    <script src="./classes/healthbar.class.js"></script>
-    <script src="./classes/coinbar.class.js"></script>
-    <script src="./classes/poisenbar.class.js"></script>
-    <script src="./classes/coin.class.js"></script>
-    <script src="./classes/poisen.class.js"></script>
-    <script src="./classes/world.class.js"></script>
-    <script src="./classes/character.class.js"></script>
-    <script src="./classes/fish.class.js"></script>
-    <script src="./classes/jelly_fish.class.js"></script>
-    <script src="./classes/background-object.class.js"></script>
-    <script src="./classes/keyboard.class.js"></script>
-    <script src="./classes/level.class.js"></script>
-    <script src="./classes/throwable-object.class.js"></script>
-    <script src="./classes/endboss.class.js"></script>
-    <script src="./levels/level1.js"></script>
-    <script src="./js/game.js"></script>
+        <script src="./classes/drawable-objects.class.js"></script>
+        <script src="./classes/movable-object.class.js"></script>
+        <!-- <script src="./classes/consolidateing-objects.class.js"></script> -->
+        <script src="./classes/healthbar.class.js"></script>
+        <script src="./classes/coinbar.class.js"></script>
+        <script src="./classes/poisenbar.class.js"></script>
+        <script src="./classes/coin.class.js"></script>
+        <script src="./classes/poisen.class.js"></script>
+        <script src="./classes/world.class.js"></script>
+        <script src="./classes/character.class.js"></script>
+        <script src="./classes/fish.class.js"></script>
+        <script src="./classes/jelly_fish.class.js"></script>
+        <script src="./classes/background-object.class.js"></script>
+        <script src="./classes/keyboard.class.js"></script>
+        <script src="./classes/level.class.js"></script>
+        <script src="./classes/throwable-object.class.js"></script>
+        <script src="./classes/endboss.class.js"></script>
+        <script src="./levels/level1.js"></script>
+        <script src="./js/game.js"></script>
 
-    <title>Sharky</title>
-</head>
-<body onload="init()">
-
-    <h1>Sharky</h1>
-
-    <canvas id="canvas" width="720" height="480">
-
-
-    </canvas>
-    
-</body>
+        <title>Sharky</title>
+    </head>
+    <body>
+        <h1>Sharky</h1>
+        <div class="canvas">
+            <canvas id="canvas" width="720" height="480"></canvas>
+        <img onclick="init()" id="start-button" src="./img/6.Botones/Start/2.png" >
+        <img class="overlay-win d-none" id="win" src="img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" >
+        <div class="overlay-lose d-none" id="lose">
+            <img  src="img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="">
+        </div>
+        <img class="d-none" onclick="restart()" id="restart-button" src="img/6.Botones/Try again/Recurso 17.png" >
+        <img class="overlay-help d-none" id="overlay-help" src="img/6.Botones/Instructions 2.png" >
+    </div>
+    <div class="action-keys">
+        <div>
+            <div class="keys">
+                <button class="key-btn key-up" id="key-up">
+                    <div class="triangle-up"></div>
+                </button>
+                <button class="key-btn key-down" id="key-down">
+                    <div class="triangle-down"></div>
+                </button>
+                <button class="key-btn key-left" id="key-left">
+                    <div class="triangle-left"></div>
+                </button>
+                <button class="key-btn key-right" id="key-right">
+                    <div class="triangle-right"></div>
+                </button>
+            </div>
+        </div>
+        <div>
+            <button class="btn-space" id="key-space">
+                <span>Bubble Attack</span>
+            </button>
+        </div>
+    </body>
 </html>

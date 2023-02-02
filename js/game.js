@@ -6,7 +6,9 @@ function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
 
-    
+    console.log(world.character);
+
+    hideStartBtn();    
 }
 
 function restart() {
@@ -14,7 +16,7 @@ function restart() {
 }
 
 function hideStartBtn() {
-    document.getElementById("startBtn").style.display = "none";
+    document.getElementById("start-button").classList.add("d-none");
 }
 
 /**
