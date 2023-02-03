@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     mirror = false;
     energy = 100;
     lastHit = 0;
+    lastFishHit = 0;
     coins = 0;
     poisen = 0; 
     airBubble = 6;
@@ -86,11 +87,19 @@ class MovableObject extends DrawableObject {
         this.energy -= 100;
         if (this.energy <= 0) {
             this.energy = 0;
+        } else {
+            this.lastFishHit = new Date().getTime();
         }
     }
 
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Zeit seit dem letzten Treffer
+        timepassed = timepassed / 1000; // Umrechnen in Sekunden
+        return timepassed < 1; // Wenn weniger als 1 Sekunde vergangen ist, ist der Charakter noch verletzt
+    }
+
+    fishHurt() {
+        let timepassed = new Date().getTime() - this.lastFishHit; // Zeit seit dem letzten Treffer
         timepassed = timepassed / 1000; // Umrechnen in Sekunden
         return timepassed < 1; // Wenn weniger als 1 Sekunde vergangen ist, ist der Charakter noch verletzt
     }

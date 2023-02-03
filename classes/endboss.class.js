@@ -1,6 +1,6 @@
 class Endboss extends MovableObject {
     height = 600;
-    width = 600;   
+    width = 600;
     frameX = this.width;
     frameY = this.height;
     speed = 4;
@@ -15,7 +15,7 @@ class Endboss extends MovableObject {
         "img/2.Enemy/3 Final Enemy/1.Introduce/7.png",
         "img/2.Enemy/3 Final Enemy/1.Introduce/8.png",
         "img/2.Enemy/3 Final Enemy/1.Introduce/9.png",
-        "img/2.Enemy/3 Final Enemy/1.Introduce/10.png",
+        "img/2.Enemy/3 Final Enemy/1.Introduce/10.png"
     ];
     moving = [
         "./img/2.Enemy/3 Final Enemy/2.floating/1.png",
@@ -33,25 +33,25 @@ class Endboss extends MovableObject {
         "./img/2.Enemy/3 Final Enemy/2.floating/13.png"
     ];
     hurt = [
-        "img/2.Enemy/3 Final Enemy/Hurt/1.png",
-        "img/2.Enemy/3 Final Enemy/Hurt/2.png",
-        "img/2.Enemy/3 Final Enemy/Hurt/3.png",
-        "img/2.Enemy/3 Final Enemy/Hurt/4.png",
+        "./img/2.Enemy/3 Final Enemy/Hurt/1.png",
+        "./img/2.Enemy/3 Final Enemy/Hurt/2.png",
+        "./img/2.Enemy/3 Final Enemy/Hurt/3.png",
+        "./img/2.Enemy/3 Final Enemy/Hurt/4.png"
     ];
     dead = [
-        "img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png",
-        "img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png",
-        "img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png",
-        "img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png",
-        "img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png",
+        "./img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 6.png",
+        "./img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 7.png",
+        "./img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 8.png",
+        "./img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 9.png",
+        "./img/2.Enemy/3 Final Enemy/Dead/Mesa de trabajo 2 copia 10.png"
     ];
     attack = [
-        "img/2.Enemy/3 Final Enemy/Attack/1.png",
-        "img/2.Enemy/3 Final Enemy/Attack/2.png",
-        "img/2.Enemy/3 Final Enemy/Attack/3.png",
-        "img/2.Enemy/3 Final Enemy/Attack/4.png",
-        "img/2.Enemy/3 Final Enemy/Attack/5.png",
-        "img/2.Enemy/3 Final Enemy/Attack/6.png",
+        "./img/2.Enemy/3 Final Enemy/Attack/1.png",
+        "./img/2.Enemy/3 Final Enemy/Attack/2.png",
+        "./img/2.Enemy/3 Final Enemy/Attack/3.png",
+        "./img/2.Enemy/3 Final Enemy/Attack/4.png",
+        "./img/2.Enemy/3 Final Enemy/Attack/5.png",
+        "./img/2.Enemy/3 Final Enemy/Attack/6.png"
     ];
 
     offset = {
@@ -62,15 +62,14 @@ class Endboss extends MovableObject {
     };
 
     constructor() {
-        super().loadImage('./img/2.Enemy/3 Final Enemy/2.floating/1.png');
+        super().loadImage("./img/2.Enemy/3 Final Enemy/2.floating/1.png");
         this.loadImages(this.moving);
-        this.loadImages(this.hurt);
         this.loadImages(this.dead);
+        this.loadImages(this.hurt);
         this.x = 2050;
         this.y = -50;
         this.animate();
     }
-
 
     animate() {
         setInterval(() => {
@@ -78,9 +77,9 @@ class Endboss extends MovableObject {
             this.playAnimation(this.moving);
             if (this.isDead()) {
                 this.playAnimation(this.dead);
-            } else if (this.isHurt()) {
+            } else if (this.fishHurt()) {
                 this.playAnimation(this.hurt);
-            } //else if (this.isAttack()) {
+            } // else if (this.isAttack()) {
             //    this.playAnimation(this.attack);
             //} else if (this.isIntroduce()) {
             //    this.playAnimation(this.introduce);

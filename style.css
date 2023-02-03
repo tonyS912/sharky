@@ -12,18 +12,16 @@ body {
     background-color: #010937;
     overflow: hidden;
 }
-canvas {
-    background-color: black;
-    background-size: cover;
-    display: block;
-}
 
 h1 {
     margin: 1rem;
 }
 
 .canvas {
+    display: block;
+    background-size: cover;
     position: relative;
+    background-image: url("./img/3. Background/Dark/2.png");
 }
 
 .canvas #start-button {
@@ -177,18 +175,6 @@ h1 {
     z-index: 1002;
     top: 0;
     background-color: rgba(46, 87, 159, 0.9);
-}
-
-.btn-help {
-    position: absolute;
-    padding: 0.5rem;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 2rem;
-    border-radius: 50%;
-    z-index: 1003;
-    color: var(--triangle-color);
-    background-color: var(--triangle-bg);
 }
 
 @media only screen and (max-width: 720px) {
