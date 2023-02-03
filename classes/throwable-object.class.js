@@ -22,6 +22,7 @@ class ThrowableObject extends MovableObject {
     }
 
     throw() {
+        this.bubble_shoot.volume = 0.3;
         this.bubble_shoot.play();
         this.speedX = 2.25;
         this.moveRight();
@@ -29,6 +30,7 @@ class ThrowableObject extends MovableObject {
 
     throwPoison() {
         this.loadImage(this.darkBubble);
+        this.dark_bubble_shoot.volume = 0.3;
         this.bubble_shoot.play();
         this.speedX = 2.25;
         this.moveRight();

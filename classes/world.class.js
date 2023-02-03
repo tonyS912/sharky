@@ -75,6 +75,7 @@ class World {
                     if (bubble.isColliding(enemy)) {
                         this.deleteBubble(bubble);
                         enemy.fishHit();
+                        this.bubble_hit.volume = 0.2;
                         this.bubble_hit.play();
                     }
                 });
@@ -92,6 +93,7 @@ class World {
                     if (poisen.isColliding(enemy)) {
                         this.deleteBubblePoisen(poisen);
                         enemy.fishHit();
+                        this.dark_bubble_hit.volume = 0.2;
                         this.dark_bubble_hit.play();
                     }
                 });
@@ -117,6 +119,7 @@ class World {
                 if (this.character.isColliding(enemy) && !enemy.isDead()) {
                     this.character.hit();
                     this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
+                    this.player_hit.volume = 0.3;
                     this.player_hit.play();
                 }
             });
@@ -149,6 +152,7 @@ class World {
      */
     delteCoin(coin) {
         this.level.coins = this.level.coins.filter((c) => c !== coin);
+        this.toAddCoin.volume = 0.3;
         this.toAddCoin.play();
     }
 
@@ -166,6 +170,7 @@ class World {
 
     deltePoisen(poisen) {
         this.level.poisen = this.level.poisen.filter((p) => p !== poisen);
+        this.toAddPoisen.volume = 0.3;
         this.toAddPoisen.play();
     }
 
@@ -244,7 +249,7 @@ class World {
         /**
          * ! only for debugging and development
          */
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
         if (mo.mirror) {
             this.flipImageBack(mo);
