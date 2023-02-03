@@ -77,6 +77,7 @@ class Endboss extends MovableObject {
             this.playAnimation(this.moving);
             if (this.isDead()) {
                 this.playAnimation(this.dead);
+                this.showEndscreen();
             } else if (this.fishHurt()) {
                 this.playAnimation(this.hurt);
             } // else if (this.isAttack()) {
@@ -85,5 +86,13 @@ class Endboss extends MovableObject {
             //    this.playAnimation(this.introduce);
             //}
         }, 200);
+    }
+
+    showEndscreen() {
+        document.getElementById("win").classList.remove("d-none");
+        document.getElementById("restart-button").classList.remove("d-none");
+        setTimeout(() => {
+            stopInterval();
+        }, 500);
     }
 }
