@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
     frameY = this.height;
     speed = 4;
     energy = 400;
+    winning = new Audio("./audio/level-win.mp3");
     introduce = [
         "img/2.Enemy/3 Final Enemy/1.Introduce/1.png",
         "img/2.Enemy/3 Final Enemy/1.Introduce/2.png",
@@ -89,6 +90,8 @@ class Endboss extends MovableObject {
     }
 
     showEndscreen() {
+        this.winning.volume = 0.4;
+        this.winning.play();
         document.getElementById("win").classList.remove("d-none");
         document.getElementById("restart-button").classList.remove("d-none");
         setTimeout(() => {
