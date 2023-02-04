@@ -6,7 +6,15 @@ function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
 
-    hideStartBtn();    
+    hideStartBtn();
+}
+
+function ontouch() {
+    document
+        .getElementById("start-button")
+        .addEventListener("touchstart", (e) => {
+            init();
+        });
 }
 
 function restart() {

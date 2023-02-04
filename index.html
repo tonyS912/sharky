@@ -17,11 +17,11 @@
         <script src="./classes/coin.class.js"></script>
         <script src="./classes/poisen.class.js"></script>
         <script src="./classes/world.class.js"></script>
+        <script src="./classes/keyboard.class.js"></script>
         <script src="./classes/character.class.js"></script>
         <script src="./classes/fish.class.js"></script>
         <script src="./classes/jelly_fish.class.js"></script>
         <script src="./classes/background-object.class.js"></script>
-        <script src="./classes/keyboard.class.js"></script>
         <script src="./classes/level.class.js"></script>
         <script src="./classes/throwable-object.class.js"></script>
         <script src="./classes/endboss.class.js"></script>
@@ -34,13 +34,12 @@
         <h1>Sharky</h1>
         <div class="canvas">
             <canvas id="canvas" width="720" height="480"></canvas>
-        <img onclick="init()" id="start-button" src="./img/6.Botones/Start/2.png" >
+        <img onclick="init(), ontouch()" on id="start-button" src="./img/6.Botones/Start/2.png" >
         <img class="overlay-win d-none" id="win" src="./img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" >
         <div class="overlay-lose d-none" id="lose">
             <img  src="./img/6.Botones/Tittles/Game Over/Recurso 12.png" alt="">
         </div>
         <img class="d-none" onclick="restart()" id="restart-button" src="./img/6.Botones/Try again/Recurso 17.png" >
-        <img class="overlay-help d-none" id="overlay-help" src="./img/6.Botones/Instructions 2.png" >
     </div>
     <div class="action-keys">
         <div>
@@ -60,8 +59,10 @@
             </div>
         </div>
         <div>
+            <button class="btn-space" id="key-f">
+                <span>Poisen</span>
             <button class="btn-space" id="key-space">
-                <span>Bubble Attack</span>
+                <span>Bubble</span>
             </button>
         </div>
     </body>
