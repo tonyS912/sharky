@@ -9,8 +9,8 @@ class World {
     canvas;
     ctx; // Contex
     keyboard;
-    camera_x = 0;
     sound = document.getElementById("soundOff").checked;
+    camera_x = 0;
     toAddCoin = new Audio("./audio/collectcoin.mp3");
     bubble_hit = new Audio("./audio/bubble_hit.mp3");
     toAddPoisen = new Audio("./audio/whispers-and-screams.mp3");

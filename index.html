@@ -54,9 +54,12 @@
         </div>
         <div class="specialKeys">
             <img class="fullscreen" src="./img/icons8-full-screen-64.png" onclick="fullscreen()">
-            <div>
+            <div class="soundModul">
                 <h5>Sound ON / OFF</h5>
-                <span class="checkbox-sound"><input class="soundOff" type="checkbox" name="soundOff" id="soundOff" checked></span>
+                <label class="switch">
+                    <input type="checkbox" id="soundToggle" onclick="soundOn()">
+                    <span class="slider round"></span>
+                </label>
             </div>
         </div>
     </div>

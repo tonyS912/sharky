@@ -18,7 +18,9 @@ function ontouch() {
         });
 }
 
-
+function soundOn(){
+    return document.getElementById('soundToggle').checked;
+}
 
 function restart() {
     window.location.replace("index.html");
