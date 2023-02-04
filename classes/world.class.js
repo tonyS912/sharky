@@ -5,6 +5,7 @@ class World {
     poisenbar = new Poisenbar();
     throwableObjects = []; // Array für die Wurfobjekte // for testing: new ThrowableObject(this.character.x , this.character.y)
     level = level1;
+    endboss = level1.enemies[level1.enemies.length - 1];
     canvas;
     ctx; // Contex
     keyboard;
@@ -40,6 +41,7 @@ class World {
             this.checkThrowableObject();
             this.checkThrowableObjectPoisen();
             this.collisionBubble();
+            this.isIntro();
         }, 150);
     }
 
@@ -176,12 +178,12 @@ class World {
         this.toAddPoisen.play();
     }
 
-    isIntroduce() {
+    isIntro() {
         let distanceEndboss = this.endboss.x - this.character.x;
-        if (distanceEndboss < 450) {
-            this.endboss.playIntro = true;
+        if (distanceEndboss < 450 ) {
+            this.endboss.nearCharacter = true;
         } else {
-            this.endboss.playIntro = false;
+            this.endboss.nearCharacter = false;
         }
     }
 

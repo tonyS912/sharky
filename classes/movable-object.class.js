@@ -11,7 +11,6 @@ class MovableObject extends DrawableObject {
     lastBubble = 0;
     attack = true;
 
-
     offset = {
         top: 0,
         right: 0,
@@ -24,6 +23,18 @@ class MovableObject extends DrawableObject {
         let path = images[i]; // pfad in den das bild geladen wird
         this.img = this.imageCache[path]; // Bild das im pfad ist in cache paken
         this.currentImage++; // zählt im array immer ein hoch
+    }
+
+    playAnimationOnce(images, interval, secIntervall) {
+        let i = this.currentImageOnce % images.length;
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImageOnce++;
+
+        if (this.currentImageOnce > images.length - 1) {
+            clearInterval(interval);
+            clearInterval(secIntervall);
+        }
     }
 
     moveRight() {
@@ -70,7 +81,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
     hit() {
         this.energy -= 2;
         if (this.energy <= 0) {
@@ -90,15 +100,6 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastFishHit = new Date().getTime();
-        }
-    }
-
-    isIntro() {
-        let distanceEndboss = this.endboss.x - this.character.x;
-        if (distanceEndboss < 150) {
-            this.playIntro = true;
-        } else {
-            this.playIntro = false;
         }
     }
 

@@ -4,9 +4,13 @@ class Endboss extends MovableObject {
     frameX = this.width;
     frameY = this.height;
     playIntro = false;
+    playDead = false;
+    nearCharacter = false;
     speed = 4;
     energy = 400;
     isAttack = false;
+    currentImageOnce = 0;
+    currentImageAttack = 0;
     x = 2050;
     winning = new Audio("./audio/level-win.mp3");
     introduce = [
@@ -77,23 +81,59 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    //animate() {
+    //    setInterval(() => {
+    //        // Idle animation
+    //        if (this.playIntro == true) {
+    //            this.playAnimation(this.introduce);
+    //            this.playIntro = false;
+    //        } else if (this.isAttack == true) {
+    //            this.playAnimation(this.attack);
+    //            this.isAttack = false;
+    //        } else if (this.isDead()) {
+    //            this.playAnimation(this.dead);
+    //            this.showEndscreen();
+    //        } else if (this.fishHurt()) {
+    //            this.playAnimation(this.hurt);
+    //        } else {
+    //            this.playAnimation(this.moving);
+    //        }
+    //    }, 200);
+    //}
+
     animate() {
-        setInterval(() => {
-            // Idle animation
-            if (this.playIntro == true) {
-                this.playAnimation(this.introduce);
-            } else if (this.isAttack == true) {
-                this.playAnimation(this.attack);
-                this.isAttack = false;
-            } else if (this.isDead()) {
-                this.playAnimation(this.dead);
-                this.showEndscreen();
+        let animateIntervall = setInterval(() => {
+            if (this.nearCharacter && !this.playIntro) {
+                this.introAnimation();
             } else if (this.fishHurt()) {
                 this.playAnimation(this.hurt);
-            } else {
+            } else if (this.isDead() && !this.playDead) {
+                this.deadEndbossAnimation(animateIntervall);
+                this.showEndscreen();
+            } else if (this.playIntro) {
                 this.playAnimation(this.moving);
             }
         }, 200);
+    }
+
+    introAnimation() {
+        this.currentImageOnce = 0;
+        let introIntervall = setInterval(() => {
+            this.playAnimationOnce(this.introduce, introIntervall);
+        }, 200);
+        this.playIntro = true;
+    }
+
+    deadEndbossAnimation(animateIntervall) {
+        this.currentImageOnce = 0;
+        let deadEndbossIntervall = setInterval(() => {
+            this.playAnimationOnce(
+                this.dead,
+                deadEndbossIntervall,
+                animateIntervall
+            );
+        }, 100);
+        this.playDead = true;
     }
 
     showEndscreen() {
