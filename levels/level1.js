@@ -1,4 +1,8 @@
-const level1 = new Level(
+var level1;
+
+function initLevel1() {
+
+level1 = new Level(
     [
         new Fish(550, 50),
         new Fish(650, 150),
@@ -66,3 +70,4 @@ const level1 = new Level(
         new Poisen(1390, -400, true),
     ],
 );
+}

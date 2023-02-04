@@ -4,6 +4,7 @@ let keyboard = new Keyboard();
 
 function init() {
     canvas = document.getElementById("canvas");
+    initLevel1();
     world = new World(canvas, keyboard);
 
     hideStartBtn();
@@ -16,6 +17,8 @@ function ontouch() {
             init();
         });
 }
+
+
 
 function restart() {
     window.location.replace("index.html");

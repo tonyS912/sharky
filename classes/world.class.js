@@ -10,6 +10,7 @@ class World {
     ctx; // Contex
     keyboard;
     camera_x = 0;
+    sound = document.getElementById("soundOff").checked;
     toAddCoin = new Audio("./audio/collectcoin.mp3");
     bubble_hit = new Audio("./audio/bubble_hit.mp3");
     toAddPoisen = new Audio("./audio/whispers-and-screams.mp3");
@@ -180,7 +181,7 @@ class World {
 
     isIntro() {
         let distanceEndboss = this.endboss.x - this.character.x;
-        if (distanceEndboss < 450 ) {
+        if (distanceEndboss < 800 ) {
             this.endboss.nearCharacter = true;
         } else {
             this.endboss.nearCharacter = false;
