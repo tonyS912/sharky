@@ -22,9 +22,17 @@ class ThrowableObject extends MovableObject {
         }
     }
 
+    playSound(sound, volume) {
+        if (soundOn()) {
+            sound.play();
+            sound.volume = volume;
+        } else {
+            sound.pause();
+        }
+    }
+
     throw() {
-        this.bubble_shoot.volume = 0.3;
-        this.bubble_shoot.play();
+        this.playSound(this.bubble_shoot, 0.3);
         this.speedX = 2.25;
         if (this.mirror == true) {
             this.x = this.x - 185;
@@ -37,8 +45,7 @@ class ThrowableObject extends MovableObject {
 
     throwPoison() {
         this.loadImage(this.darkBubble);
-        this.bubble_shoot.volume = 0.3;
-        this.bubble_shoot.play();
+        this.playSound(this.dark_bubble_shoot, 0.3);
         this.speedX = 2.25;
         if (this.mirror == true) {
             this.x = this.x - 185;

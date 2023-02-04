@@ -79,6 +79,15 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    playSound(sound, volume) {
+        if (soundOn()) {
+            sound.play();
+            sound.volume = volume;
+        } else {
+            sound.pause();
+        }
+    }
+
     animate() {
         setInterval(() => {
             if (
@@ -87,8 +96,7 @@ class Character extends MovableObject {
             ) {
                 this.x += this.speed;
                 this.mirror = false;
-                this.swim.volume = 0.3;
-                this.swim.play();
+                this.playSound(this.swim, 0.3);
             }
 
             if (
@@ -97,8 +105,7 @@ class Character extends MovableObject {
             ) {
                 this.x -= this.speed;
                 this.mirror = true;
-                this.swim.volume = 0.3;
-                this.swim.play();
+                this.playSound(this.swim, 0.3);
             }
 
             if (
@@ -106,8 +113,7 @@ class Character extends MovableObject {
                 this.y > -100
             ) {
                 this.y -= this.speed;
-                this.swim.volume = 0.3;
-                this.swim.play();
+                this.playSound(this.swim, 0.3);
             }
 
             if (
@@ -115,8 +121,7 @@ class Character extends MovableObject {
                 this.y < 300
             ) {
                 this.y += this.speed;
-                this.swim.volume = 0.3;
-                this.swim.play();
+                this.playSound(this.swim, 0.3);
             }
 
             this.world.camera_x = -this.x + 40; // Character starts not on the left border, it starts a littlebit more right in the area
@@ -149,8 +154,7 @@ class Character extends MovableObject {
     }
 
     showEndscreen() {
-        this.losing.volume = 0.5;
-        this.losing.play();
+        this.playSound(this.under_water, 0.5);
         document.getElementById("lose").classList.remove("d-none");
         document.getElementById("restart-button").classList.remove("d-none");
         setTimeout(() => {

@@ -81,6 +81,15 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    playSound(sound, volume) {
+        if (soundOn()) {
+            sound.play();
+            sound.volume = volume;
+        } else {
+            sound.pause();
+        }
+    }
+
     animate() {
         let animateIntervall = setInterval(() => {
             if (this.nearCharacter && !this.playIntro) {
@@ -117,8 +126,7 @@ class Endboss extends MovableObject {
     }
 
     showEndscreen() {
-        this.winning.volume = 0.4;
-        this.winning.play();
+        this.playSound(this.winning, 0.4);
         document.getElementById("win").classList.remove("d-none");
         document.getElementById("restart-button").classList.remove("d-none");
         setTimeout(() => {

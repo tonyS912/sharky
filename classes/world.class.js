@@ -9,7 +9,6 @@ class World {
     canvas;
     ctx; // Contex
     keyboard;
-    sound = document.getElementById("soundOff").checked;
     camera_x = 0;
     toAddCoin = new Audio("./audio/collectcoin.mp3");
     bubble_hit = new Audio("./audio/bubble_hit.mp3");
@@ -32,6 +31,15 @@ class World {
 
     setWorld() {
         this.character.world = this;
+    }
+
+    playSound(sound, volume) {
+        if (soundOn()) {
+            sound.play();
+            sound.volume = volume;
+        } else {
+            sound.pause();
+        }
     }
 
     checkCollision() {
@@ -80,8 +88,7 @@ class World {
                     if (bubble.isColliding(enemy)) {
                         this.deleteBubble(bubble);
                         enemy.fishHit();
-                        this.bubble_hit.volume = 0.2;
-                        this.bubble_hit.play();
+                        this.playSound(this.bubble_hit, 0.2);
                     }
                 });
             });
@@ -98,8 +105,7 @@ class World {
                     if (poisen.isColliding(enemy)) {
                         this.deleteBubblePoisen(poisen);
                         enemy.fishHit();
-                        this.dark_bubble_hit.volume = 0.2;
-                        this.dark_bubble_hit.play();
+                        this.playSound(this.bubble_hit, 0.2);
                     }
                 });
             });
@@ -124,8 +130,7 @@ class World {
                 if (this.character.isColliding(enemy) && !enemy.isDead()) {
                     this.character.hit();
                     this.healthbar.setPercentage(this.character.energy); // set the healthbar to the energy of the character
-                    this.player_hit.volume = 0.3;
-                    this.player_hit.play();
+                    this.playSound(this.player_hit, 0.3);
                 }
             });
         }, 2200);
@@ -157,8 +162,7 @@ class World {
      */
     delteCoin(coin) {
         this.level.coins = this.level.coins.filter((c) => c !== coin);
-        this.toAddCoin.volume = 0.3;
-        this.toAddCoin.play();
+        this.playSound(this.toAddCoin, 0.3);
     }
 
     collisionPoisen() {
@@ -175,8 +179,7 @@ class World {
 
     deltePoisen(poisen) {
         this.level.poisen = this.level.poisen.filter((p) => p !== poisen);
-        this.toAddPoisen.volume = 0.3;
-        this.toAddPoisen.play();
+        this.playSound(this.toAddPoisen, 0.3);
     }
 
     isIntro() {
