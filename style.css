@@ -40,6 +40,10 @@ h5 {
     margin-bottom: 4px;
 }
 
+.fullscreen {
+    cursor: pointer;
+}
+
 .canvas {
     display: block;
     background-size: cover;

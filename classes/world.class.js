@@ -48,6 +48,7 @@ class World {
             let bubble = new ThrowableObject(
                 this.character.x,
                 this.character.y,
+                this.character.mirror,
                 (this.check = true)
             );
             this.throwableObjects.push(bubble);
@@ -60,6 +61,7 @@ class World {
             let poisen = new ThrowableObject(
                 this.character.x,
                 this.character.y,
+                this.character.mirror,
                 (this.check = false)
             );
             this.throwableObjects.push(poisen);
