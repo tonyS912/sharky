@@ -11,8 +11,8 @@ class Keyboard {
     D = false;
 
     constructor() {
-        // this.keyEvents();
-        // this.clickEvents();
+        this.keyEvents();
+        this.clickEvents();
     }
 
     keyEvents() {

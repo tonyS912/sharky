@@ -210,6 +210,10 @@ h5 {
     .action-keys {
         display: flex;
     }
+
+    .key-assigment {
+        display: none;
+    }
 }
 
 @media only screen and (max-height: 480px) {
