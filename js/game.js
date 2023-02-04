@@ -86,3 +86,4 @@ function stopInterval() {
         window.clearInterval(i);
     }
 }
+
