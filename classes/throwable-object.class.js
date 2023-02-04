@@ -13,7 +13,7 @@ class ThrowableObject extends MovableObject {
         this.y = y + 100;
         this.width = 70;
         this.height = 70;
-
+        
         if (check == true) {
             this.throw();
         } else {
@@ -25,7 +25,11 @@ class ThrowableObject extends MovableObject {
         this.bubble_shoot.volume = 0.3;
         this.bubble_shoot.play();
         this.speedX = 2.25;
-        this.moveRight();
+        if (this.mirror == true) {
+            this.moveLeft();
+        } else {
+            this.moveRight();
+        }
     }
 
     throwPoison() {
@@ -33,6 +37,10 @@ class ThrowableObject extends MovableObject {
         this.bubble_shoot.volume = 0.3;
         this.bubble_shoot.play();
         this.speedX = 2.25;
-        this.moveRight();
+        if (this.mirror == true) {
+            this.moveLeft();
+        } else {
+            this.moveRight();
+        }
     }
 }

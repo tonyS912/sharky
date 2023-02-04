@@ -32,7 +32,7 @@
     </head>
     <body>
         <h1>Sharky</h1>
-        <div class="canvas">
+        <div class="canvas" id="fullscreen">
             <canvas id="canvas" width="720" height="480"></canvas>
         <img onclick="init(), ontouch()" on id="start-button" src="./img/6.Botones/Start/2.png" >
         <img class="overlay-win d-none" id="win" src="./img/6.Botones/Tittles/You win/Mesa de trabajo 1.png" >
@@ -51,6 +51,9 @@
         <div class="key-layout">
             <h5>Space &nbsp;=  &nbsp;Bubble</h5>
             <h5>F &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=  &nbsp;Poisen</h5>
+        </div>
+        <div >
+            <img src="./img/icons8-full-screen-64.png" onclick="fullscreen()">
         </div>
     </div>
     <div class="action-keys">

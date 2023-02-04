@@ -241,9 +241,6 @@ class World {
             this.flipImage(mo);
         }
 
-        /**
-         * bild zeichnen und collision box zeichnen
-         */
         mo.draw(this.ctx);
 
         /**
