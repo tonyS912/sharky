@@ -176,12 +176,12 @@ class World {
         this.toAddPoisen.play();
     }
 
-    checkDistanceToEndboss() {
+    isIntroduce() {
         let distanceEndboss = this.endboss.x - this.character.x;
         if (distanceEndboss < 450) {
-            this.endboss.nearCharacter = true;
+            this.endboss.playIntro = true;
         } else {
-            this.endboss.nearCharacter = false;
+            this.endboss.playIntro = false;
         }
     }
 

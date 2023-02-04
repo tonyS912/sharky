@@ -6,10 +6,11 @@ class MovableObject extends DrawableObject {
     lastHit = 0;
     lastFishHit = 0;
     coins = 0;
-    poisen = 0; 
+    poisen = 0;
     airBubble = 6;
     lastBubble = 0;
     attack = true;
+
 
     offset = {
         top: 0,
@@ -17,7 +18,6 @@ class MovableObject extends DrawableObject {
         bottom: 0,
         left: 0,
     };
-
 
     playAnimation(images) {
         let i = this.currentImage % images.length; // Modulo geht das array durch wie eine wiederkehrende Schleife
@@ -70,6 +70,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
+
     hit() {
         this.energy -= 2;
         if (this.energy <= 0) {
@@ -77,7 +78,7 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
-    }   
+    }
 
     isDead() {
         return this.energy == 0;
@@ -89,6 +90,15 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastFishHit = new Date().getTime();
+        }
+    }
+
+    isIntro() {
+        let distanceEndboss = this.endboss.x - this.character.x;
+        if (distanceEndboss < 150) {
+            this.playIntro = true;
+        } else {
+            this.playIntro = false;
         }
     }
 

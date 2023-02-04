@@ -5,6 +5,7 @@ class Character extends MovableObject {
     frameY = 90;
     speed = 5;
     spacebar = false;
+    losing = new Audio("./audio/toilet.mp3");
     moving = [
         "./img/1.Sharkie/1.IDLE/1.png",
         "./img/1.Sharkie/1.IDLE/2.png",
@@ -148,6 +149,8 @@ class Character extends MovableObject {
     }
 
     showEndscreen() {
+        this.losing.volume = 0.5;
+        this.losing.play();
         document.getElementById("lose").classList.remove("d-none");
         document.getElementById("restart-button").classList.remove("d-none");
         setTimeout(() => {
