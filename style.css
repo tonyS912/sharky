@@ -3,6 +3,11 @@
     --triangle-bg: #7fffe0;
 }
 
+@font-face {
+    font-family: "LuckiestGuy";
+    src: url("./font/Luckiest_Guy/LuckiestGuy-Regular.ttf");
+}
+
 body {
     height: 98vh;
     display: flex;
@@ -16,6 +21,7 @@ body {
     color: antiquewhite;
     background-color: #010937;
     overflow: hidden;
+    font-family: "LuckiestGuy", sans-serif;
 }
 
 
