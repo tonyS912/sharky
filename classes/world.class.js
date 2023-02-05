@@ -136,14 +136,6 @@ class World {
         }, 2200);
     }
 
-    noCollisionEnemy() {
-        setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                this.character.isColliding(enemy);
-            });
-        }, 2200);
-    }
-
     collisionCoin() {
         setInterval(() => {
             this.level.coins.forEach((coin) => {
